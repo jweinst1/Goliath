@@ -8,10 +8,15 @@
 //special functions for changing indices
 int increaseindex(int num);
 int decreaseindex(int num);
+
+//collapses entire rows or cols to a cell
 int sumrow(int arr[]);
 int mulrow(int arr[]);
 int sumcol(int arr[][3], int c);
 int mulcol(int arr[][3], int c);
+
+//summing rows and cols
+int sumbelow(int arr[][3], int r, int c);
 
 //matrix machine
 //makes a 3 by 3 matrix and takes instructions for it.
@@ -63,6 +68,9 @@ int main(void) {
                 break;
 
             case '&': machine[row][col] = mulcol(machine, col);
+                break;
+
+            case '/': machine[row][col] = sumbelow(machine, row, col);
                 break;
 
             case '.': printf("%d", machine[row][col]);
@@ -119,4 +127,9 @@ int sumcol(int arr[][3], int c) {
 //multiplies a column in the matrix
 int mulcol(int arr[][3], int c) {
     return arr[0][c]* arr[1][c] * arr[2][c];
+}
+
+//sums the cell below the current to the current cell.
+int sumbelow(int arr[][3], int r, int c) {
+    return arr[r][c] + arr[decreaseindex(r)][c];
 }
