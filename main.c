@@ -10,6 +10,8 @@ int increaseindex(int num);
 int decreaseindex(int num);
 int sumrow(int arr[]);
 int mulrow(int arr[]);
+int sumcol(int arr[][3], int c);
+int mulcol(int arr[][3], int c);
 
 //matrix machine
 //makes a 3 by 3 matrix and takes instructions for it.
@@ -48,10 +50,19 @@ int main(void) {
             case '-': machine[row][col] -= 1;
                 break;
 
+            case '~': machine[row][col] = 0;
+                break;
+
             case '#': machine[row][col] = sumrow(machine[row]);
                 break;
 
             case '*': machine[row][col] = mulrow(machine[row]);
+                break;
+
+            case '$': machine[row][col] = sumcol(machine, col);
+                break;
+
+            case '&': machine[row][col] = mulcol(machine, col);
                 break;
 
             case '.': printf("%d", machine[row][col]);
@@ -98,4 +109,14 @@ int sumrow(int arr[]) {
 //multiplies the row in a matrix
 int mulrow(int arr[]) {
     return arr[0]*arr[1]*arr[2];
+}
+
+//sums a column in the matrix
+int sumcol(int arr[][3], int c) {
+    return arr[0][c]+ arr[1][c] + arr[2][c];
+}
+
+//multiplies a column in the matrix
+int mulcol(int arr[][3], int c) {
+    return arr[0][c]* arr[1][c] * arr[2][c];
 }
