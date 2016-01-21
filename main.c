@@ -18,6 +18,10 @@ int mulcol(int arr[][3], int c);
 //summing rows and cols
 int sumbelow(int arr[][3], int r, int c);
 
+//swapping positions in the machine
+void swapbelow(int arr[][3], int r, int c);
+void swapright(int arr[][3], int r, int c);
+
 //matrix machine
 //makes a 3 by 3 matrix and takes instructions for it.
 int main(void) {
@@ -71,6 +75,12 @@ int main(void) {
                 break;
 
             case '/': machine[row][col] = sumbelow(machine, row, col);
+                break;
+
+            case '?': swapbelow(machine, row, col);
+                break;
+
+            case '%': swapright(machine, row, col);
                 break;
 
             case '.': printf("%d", machine[row][col]);
@@ -131,5 +141,21 @@ int mulcol(int arr[][3], int c) {
 
 //sums the cell below the current to the current cell.
 int sumbelow(int arr[][3], int r, int c) {
-    return arr[r][c] + arr[decreaseindex(r)][c];
+    return arr[r][c] + arr[increaseindex(r)][c];
+}
+
+//swaps the cell below the current with the current cell value
+void swapbelow(int arr[][3], int r, int c) {
+    int temp = arr[r][c];
+    int tempother = arr[increaseindex(r)][c];
+    arr[r][c] = tempother;
+    arr[decreaseindex(r)][c] = temp;
+}
+
+//swamps the cell to the right of the current value with the current cell value
+void swapright(int arr[][3], int r, int c) {
+    int temp = arr[r][c];
+    int tempother = arr[r][increaseindex(c)];
+    arr[r][c] = tempother;
+    arr[r][increaseindex(c)] = temp;
 }
