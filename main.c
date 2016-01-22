@@ -25,6 +25,12 @@ void swapright(int arr[][3], int r, int c);
 //convert to alpha char and printf
 void tochar(int num);
 
+//sum up to some number for setting to cells
+int sumints(int end);
+
+//factorial function for cells in the machine
+int factorial(int end);
+
 //matrix machine
 //makes a 3 by 3 matrix and takes instructions for it.
 int main(void) {
@@ -84,6 +90,12 @@ int main(void) {
                 break;
 
             case '?': swapbelow(machine, row, col);
+                break;
+
+            case ',': machine[row][col] = sumints(machine[row][col]);
+                break;
+
+            case '!': machine[row][col] = factorial(machine[row][col]);
                 break;
 
             case '%': swapright(machine, row, col);
@@ -164,6 +176,24 @@ void swapright(int arr[][3], int r, int c) {
     int tempother = arr[r][increaseindex(c)];
     arr[r][c] = tempother;
     arr[r][increaseindex(c)] = temp;
+}
+
+int sumints(int end) {
+    int total = 0;
+    int i;
+    for(i=0;i<end;i++) {
+        total += i;
+    }
+    return total;
+}
+
+int factorial(int end) {
+    int total = 1;
+    int i;
+    for(i=1;i<end;i++) {
+        total *= i;
+    }
+    return total;
 }
 
 //prints a char corresponding to the int in the cell
