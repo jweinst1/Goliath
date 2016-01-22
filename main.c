@@ -31,6 +31,9 @@ int sumints(int end);
 //factorial function for cells in the machine
 int factorial(int end);
 
+//sum current row down
+void sumrowdown(int arr[][3], int r, int c);
+
 //matrix machine
 //makes a 3 by 3 matrix and takes instructions for it.
 int main(void) {
@@ -99,6 +102,9 @@ int main(void) {
                 break;
 
             case '%': swapright(machine, row, col);
+                break;
+
+            case '|': sumrowdown(machine, row, col);
                 break;
 
             case '.': printf("%d", machine[row][col]);
@@ -194,6 +200,15 @@ int factorial(int end) {
         total *= i;
     }
     return total;
+}
+//sums the current row down
+void sumrowdown(int arr[][3], int r, int c) {
+    int first = arr[r][0];
+    int second = arr[r][1];
+    int third = arr[r][2];
+    arr[increaseindex(r)][0] += first;
+    arr[increaseindex(r)][1] += second;
+    arr[increaseindex(r)][2] += third;
 }
 
 //prints a char corresponding to the int in the cell
