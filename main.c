@@ -22,6 +22,9 @@ int sumbelow(int arr[][3], int r, int c);
 void swapbelow(int arr[][3], int r, int c);
 void swapright(int arr[][3], int r, int c);
 
+//convert to alpha char and printf
+void tochar(int num);
+
 //matrix machine
 //makes a 3 by 3 matrix and takes instructions for it.
 int main(void) {
@@ -76,6 +79,8 @@ int main(void) {
 
             case '/': machine[row][col] = sumbelow(machine, row, col);
                 break;
+
+            case '@': tochar(machine[row][col]);
 
             case '?': swapbelow(machine, row, col);
                 break;
@@ -158,4 +163,20 @@ void swapright(int arr[][3], int r, int c) {
     int tempother = arr[r][increaseindex(c)];
     arr[r][c] = tempother;
     arr[r][increaseindex(c)] = temp;
+}
+
+//prints a char corresponding to the int in the cell
+void tochar(int num) {
+    switch(num) {
+        case 0: printf(" ");
+            break;
+        case 1: printf("a");
+            break;
+        case 2: printf("b");
+            break;
+        case 3: printf("c");
+            break;
+        case 4: printf("d");
+            break;
+    }
 }
