@@ -44,16 +44,16 @@ int main(void) {
     int r;
     for(r=0;instructions[r]!='\0';r++) {
         switch(instructions[r]) {
-            case '>': increaseindex(col);
+            case '>': col = increaseindex(col);
                 break;
 
-            case '<': decreaseindex(col);
+            case '<': col = decreaseindex(col);
                 break;
 
-            case '^': decreaseindex(row);
+            case '^': row = decreaseindex(row);
                 break;
 
-            case '_': increaseindex(row);
+            case '_': row = increaseindex(row);
                 break;
 
             case '+': machine[row][col] += 1;
@@ -81,6 +81,7 @@ int main(void) {
                 break;
 
             case '@': tochar(machine[row][col]);
+                break;
 
             case '?': swapbelow(machine, row, col);
                 break;
@@ -177,6 +178,22 @@ void tochar(int num) {
         case 3: printf("c");
             break;
         case 4: printf("d");
+            break;
+        case 5: printf("e");
+            break;
+        case 6: printf("f");
+            break;
+        case 7: printf("g");
+            break;
+        case 8: printf("h");
+            break;
+        case 9: printf("i");
+            break;
+        case 10: printf("j");
+            break;
+        case 11: printf("k");
+            break;
+        case 12: printf("l");
             break;
     }
 }
